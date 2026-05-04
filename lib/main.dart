@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:nest_manager/core/features/auth/presentation/provider/LoginProvider.dart';
-import 'package:nest_manager/core/features/auth/presentation/provider/OtpProvider.dart';
-import 'package:nest_manager/core/features/dashboard/home/presentation/provider/HomeProvider.dart';
+
+
 import 'package:provider/provider.dart';
 
-import 'core/features/auth/presentation/screens/LoginScreen.dart';
+import 'core/routs/Routs.dart';
+import 'features/tenant/auth/presentation/provider/LoginProvider.dart';
+import 'features/tenant/auth/presentation/provider/OtpProvider.dart';
+import 'features/tenant/auth/presentation/screens/LoginScreen.dart';
+import 'features/tenant/auth/presentation/screens/OtpScreen.dart';
+import 'features/tenant/dashboard/MainDashboardScreen.dart';
+import 'features/tenant/dashboard/home/presentation/provider/HomeProvider.dart';
+import 'features/tenant/dashboard/home/presentation/screens/HomeScreen.dart';
+import 'features/tenant/dashboard/payment/presentation/provider/PaymentsProvider.dart';
+import 'features/tenant/dashboard/payment/presentation/screens/PaymentsScreen.dart';
+import 'features/tenant/dashboard/profile/presentation/provider/ProfileProvider.dart';
+import 'features/tenant/dashboard/profile/presentation/screens/ProfileScreen.dart';
+import 'features/tenant/dashboard/ticket/presentation/provider/TicketsProvider.dart';
+import 'features/tenant/dashboard/ticket/presentation/screens/TicketsScreen.dart';
+import 'features/tenant/dashboard/wallet/presentation/provider/WalletProvider.dart';
+import 'features/tenant/dashboard/wallet/presentation/screens/WalletScreen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -18,27 +33,35 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-         ChangeNotifierProvider(
-          create: (_) => LoginProvider(
+         ChangeNotifierProvider( create: (_) => LoginProvider(
             //UserRepository(apiService),
           ),
         ),
-         ChangeNotifierProvider(
-            create: (_) => OtpProvider(
+         ChangeNotifierProvider(create: (_) => OtpProvider(
               //  ProductRepository(apiService)
             )
         ),
-        ChangeNotifierProvider(
-            create: (_) => HomeProvider(
+        ChangeNotifierProvider(create: (_) => HomeProvider(
               //  ProductRepository(apiService)
             )
         ),
-        /*
-        ChangeNotifierProvider(
-            create: (_) => NewProductProvider(
-                NewProductRepository(apiService)
+        ChangeNotifierProvider(create: (_) => PaymentsProvider(
+              //  NewProductRepository(apiService)
             )
-        )*/
+        ),
+        ChangeNotifierProvider(create: (_) => TicketsProvider(
+              //  NewProductRepository(apiService)
+            )
+        ),
+        ChangeNotifierProvider(create: (_) => WalletProvider(
+              //  NewProductRepository(apiService)
+            )
+        ),
+        ChangeNotifierProvider(create: (_) => ProfileProvider(
+          //  NewProductRepository(apiService)
+        )
+        ),
+
       ],
 
       /*child: MaterialApp(
@@ -51,20 +74,20 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
       //  theme: brightness == Brightness.light ? theme.light() : theme.dark(),
         //  Initial screens
-        initialRoute: '/login',
+        initialRoute: AppRoutes.login,
 
         //  Named routes
         routes: {
           //'/splash': (_) => const SplashScreen(),
-          '/login': (_) => const LoginScreen(),
-          /*'/main': (_) => const MainScreen(),
-          '/profile': (_) => const ProfileScreen(),
-          '/home': (_) => const HomeScreen(),
-          '/userDetail': (_) => const UserDetailScreen(),
-          '/product': (_) => const ProductScreen(),
-          '/productDetail': (_) => const ProductDetailScreen(),
-          '/productNew': (_) => const NewProductScreen(),
-          '/productDetailNew': (_) => const ProductDetailScreen(),*/
+          AppRoutes.login: (_) => const LoginScreen(),
+          AppRoutes.otp: (_) => const OtpScreen(),
+          AppRoutes.mainDashboard: (_) => const MainDashboardScreen(),
+          AppRoutes.home: (_) => const HomeScreen(),
+          AppRoutes.payments: (_) => const PaymentsScreen(),
+          AppRoutes.tickets: (_) => const TicketsScreen(),
+          AppRoutes.wallet: (_) => const WalletScreen(),
+          AppRoutes.profile: (_) => const ProfileScreen(),
+
 
         },
       ),

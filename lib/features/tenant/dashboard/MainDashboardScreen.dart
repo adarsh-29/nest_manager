@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nest_manager/core/features/dashboard/payment/presentation/screens/PaymentsScreen.dart';
-import 'package:nest_manager/core/features/dashboard/profile/presentation/screens/ProfileScreen.dart';
-import 'package:nest_manager/core/features/dashboard/ticket/presentation/screens/TicketsScreen.dart';
-import 'package:nest_manager/core/features/dashboard/wallet/presentation/screens/WalletScreen.dart';
+import 'package:nest_manager/features/tenant/dashboard/payment/presentation/screens/PaymentsScreen.dart';
+import 'package:nest_manager/features/tenant/dashboard/profile/presentation/screens/ProfileScreen.dart';
+import 'package:nest_manager/features/tenant/dashboard/ticket/presentation/screens/TicketsScreen.dart';
+import 'package:nest_manager/features/tenant/dashboard/wallet/presentation/screens/WalletScreen.dart';
 
 import 'home/presentation/screens/HomeScreen.dart';
 
@@ -23,13 +23,6 @@ class _MainDashboardScreenState extends State<MainDashboardScreen> {
     WalletScreen(),
     ProfileScreen(),
   ];
-  /*late final List<Widget> screens = [
-    ChangeNotifierProvider(create: (_) => HomeProvider(), child: const HomeScreen()),
-    ChangeNotifierProvider(create: (_) => PaymentsProvider(), child: const PaymentsScreen()),
-    ChangeNotifierProvider(create: (_) => TicketsProvider(), child: const TicketsScreen()),
-    ChangeNotifierProvider(create: (_) => WalletProvider(), child: const WalletScreen()),
-    ChangeNotifierProvider(create: (_) => ProfileProvider(), child: const ProfileScreen()),
-  ];*/
 
   void _onItemTapped(int index) {
     setState(() {

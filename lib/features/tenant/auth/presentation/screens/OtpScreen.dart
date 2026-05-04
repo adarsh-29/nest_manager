@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nest_manager/core/features/dashboard/MainDashboardScreen.dart';
 import 'package:provider/provider.dart';
+import '../../../../../core/routs/Routs.dart';
 import '../provider/OtpProvider.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -45,7 +45,7 @@ class _OtpScreenState extends State<OtpScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              /// 🔙 Back
+              ///  Back
               Align(
                 alignment: Alignment.centerLeft,
                 child: TextButton.icon(
@@ -60,7 +60,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
               const SizedBox(height: 40),
 
-              /// 🔷 Icon
+              ///  Icon
               Container(
                 padding: const EdgeInsets.all(18),
                 decoration: BoxDecoration(
@@ -97,7 +97,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 child: Column(
                   children: [
 
-                    /// 🔢 OTP Boxes
+                    ///  OTP Boxes
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(6, (index) {
@@ -133,13 +133,13 @@ class _OtpScreenState extends State<OtpScreen> {
 
                     const SizedBox(height: 20),
 
-                    /// ❌ Error
+                    ///  Error
                     if (provider.error != null)
                       Text(provider.error!, style: const TextStyle(color: Colors.red)),
 
                     const SizedBox(height: 10),
 
-                    /// ✅ Verify Button
+                    ///  Verify Button
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -160,15 +160,14 @@ class _OtpScreenState extends State<OtpScreen> {
                               .verifyOtp(otp);
 
                           if (success) {
-                            /*ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("OTP Verified")),
-                            );*/
-                            Navigator.push(
+                            /*Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (_) => const  MainDashboardScreen(),
                               ),
-                            );
+                            );*/
+
+                            Navigator.pushReplacementNamed(context, AppRoutes.mainDashboard);
                           }
                         },
                         style: ElevatedButton.styleFrom(

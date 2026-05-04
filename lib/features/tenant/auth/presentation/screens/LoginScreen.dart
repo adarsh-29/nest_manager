@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../core/routs/Routs.dart';
 import '../provider/LoginProvider.dart';
-import 'OtpScreen.dart';
 
 class LoginScreen extends StatefulWidget{
   const LoginScreen({super.key});
@@ -98,6 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: phoneController,
                           keyboardType: TextInputType.phone,
                           style: const TextStyle(color: Colors.white),
+                          maxLength: 10,
                           decoration: _inputDecoration("Mobile Number", "+91 9876543210", Icons.phone),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -112,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         const SizedBox(height: 15),
 
-                        /// 🔒 Password Field
+                        ///  Password Field
                         TextFormField(
                           controller: passwordController,
                           obscureText: !isPasswordVisible,
@@ -146,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         const SizedBox(height: 20),
 
-                        /// ❌ Error
+                        ///  Error
                         if (provider.error != null)
                           Text(
                             provider.error!,
@@ -155,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         const SizedBox(height: 10),
 
-                        /// 🚀 Login Button
+                        ///  Login Button
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -172,12 +173,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
 
                                 if (success) {
-                                  Navigator.push(
+                                 /* Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                       builder: (_) => const  OtpScreen(),
                                     ),
-                                  );
+                                  );*/
+
+                                  Navigator.pushReplacementNamed(context, AppRoutes.otp);
+
                                 }
                               }
                             },

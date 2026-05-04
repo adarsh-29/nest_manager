@@ -4,9 +4,8 @@ class ApiService {
   static const String baseUrl = "https://dummyjson.com";
   static const String productBaseUrl = "https://api.escuelajs.co/api/v1/";
 
-  //static const String url = "https://dummyjson.com/users?limit=10&skip=0&key=gender&value=male";
 
-  // 1. Create a single Dio instance with the interceptor configured
+
   final Dio _dio = Dio(
     BaseOptions(
       baseUrl: baseUrl,
@@ -16,11 +15,11 @@ class ApiService {
   )..interceptors.add(LogInterceptor(
     requestBody: true,
     responseBody: true,
-    logPrint: (obj) => print(obj), // This ensures logs show in the console
+    logPrint: (obj) => print(obj),
   ));
 
 
-  final Dio _dioProduct = Dio(  // this is needed as base url is changed
+  final Dio _dioProduct = Dio(
     BaseOptions(
       baseUrl: productBaseUrl,
       connectTimeout: const Duration(seconds: 5),
@@ -29,34 +28,14 @@ class ApiService {
   )..interceptors.add(LogInterceptor(
     requestBody: true,
     responseBody: true,
-    logPrint: (obj) => print(obj), // This ensures logs show in the console
+    logPrint: (obj) => print(obj),
   ));
 
 
 
   Future<List<dynamic>> fetchUsers({int limit = 20, int skip = 0}) async{
 
-    /*final url = Uri.https(baseUrl, '/users', {'limit': '$limit', 'skip': '$skip',});
-     // final response = await http.get(Uri.parse(url));
-    final response = await http.get(url);
-
-
-    final response = await dio.get('https://dummyjson.com/users', queryParameters: {'limit': 10});
-
-
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return data['users'];
-    } else {
-      throw Exception('Failed to load users');
-    }
-     */
-
-
     try{
-      // 2. Use the instance to make the call
-      // The queryParameters will automatically handle the pagination
       final response = await _dio.get(
         '/users',
         queryParameters: {
@@ -65,8 +44,6 @@ class ApiService {
         },
       );
 
-      // 3. In Dio, response.statusCode is checked via try-catch by default
-      // and response.data is already a Map/List (not a String)
       if (response.statusCode == 200) {
         return response.data['users'];
       } else {
